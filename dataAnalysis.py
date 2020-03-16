@@ -18,8 +18,8 @@ with open(cwb_filename) as csvfile:
    header = mycsv.fieldnames
    for row in mycsv:
       data.append(row)
-data = list(filter(lambda del_99: del_99['WDSD'] != '-99.000', data))  #delete the data that WDSD=-99.000
-data = list(filter(lambda del_99: del_99['WDSD'] != '-999.000', data)) #delete the data that WDSD=-999.000
+data = list(filter(lambda item: item['WDSD'] != '-99.000', data))  #delete the data that WDSD=-99.000
+data = list(filter(lambda item: item['WDSD'] != '-999.000', data)) #delete the data that WDSD=-999.000
 
 #=======================================
 
@@ -33,7 +33,7 @@ target_station = ['C0A880', 'C0F9A0', 'C0G640', 'C0R190', 'C0X260']             
 output_data = []                                                                     #the output list
 for n in target_station :
    target_data = list(filter(lambda item: item['station_id'] == n, data))            #get all data of the target station
-   target_data = sorted(target_data, key=lambda i: i['WDSD'])                        #sort target_data by WDSD
+   target_data = sorted(target_data, key=lambda item: item['WDSD'])                        #sort target_data by WDSD
    if len(target_data)>=2 :                                                          #max range exist
       output_data.append([n, float(target_data[-1]['WDSD']) - float(target_data[0]['WDSD'])])
    else :                                                                            #max range not exsit
