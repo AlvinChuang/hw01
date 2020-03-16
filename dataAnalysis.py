@@ -25,12 +25,15 @@ with open(cwb_filename) as csvfile:
 # target_data = list(filter(lambda item: item['station_id'] == 'C0X260', data))
 
 # Retrive ten data points from the beginning.
-target_data = data[:10]
+####target_data = data[:10]
+target_data = list(filter(lambda item: item['station_id'] == 'C0K28', data))
 
 #=======================================
 
 # Part. 4
 #=======================================
 # Print result
+if len(target_data) == 0 :
+    print('None')
 print(target_data)
 #========================================
